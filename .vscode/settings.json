@@ -1,0 +1,544 @@
+{
+	"files.exclude": {
+		"**/*.rpyc": true,
+		"**/*.rpa": true,
+		"**/*.rpymc": true,
+		"**/cache/": true
+	},
+	"editor.tokenColorCustomizations": {
+		"[*Light*]": {
+			"textMateRules": [
+				{
+					"scope": "ref.matchtext",
+					"settings": {
+						"foreground": "#000"
+					}
+				}
+			]
+		},
+		"[*Dark*]": {
+			"textMateRules": [
+				{
+					"scope": "ref.matchtext",
+					"settings": {
+						"foreground": "#fff"
+					}
+				}
+			]
+		},
+		"textMateRules": [
+			{
+				"scope": "renpy.meta.plain",
+				"settings": {
+					"fontStyle": ""
+				}
+			},
+			{
+				"scope": "renpy.meta.i",
+				"settings": {
+					"fontStyle": "italic"
+				}
+			},
+			{
+				"scope": "renpy.meta.b",
+				"settings": {
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": [
+					"renpy.meta.u",
+					"renpy.meta.a"
+				],
+				"settings": {
+					"fontStyle": "underline"
+				}
+			},
+			{
+				"scope": "renpy.meta.s",
+				"settings": {
+					"fontStyle": "strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.b",
+				"settings": {
+					"fontStyle": "italic bold"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.u",
+				"settings": {
+					"fontStyle": "italic underline"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.s",
+				"settings": {
+					"fontStyle": "italic strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.b renpy.meta.u",
+				"settings": {
+					"fontStyle": "bold underline"
+				}
+			},
+			{
+				"scope": "renpy.meta.b renpy.meta.s",
+				"settings": {
+					"fontStyle": "bold strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.u renpy.meta.s",
+				"settings": {
+					"fontStyle": "underline strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.b renpy.meta.u",
+				"settings": {
+					"fontStyle": "italic bold underline"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.b renpy.meta.s",
+				"settings": {
+					"fontStyle": "italic bold strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.u renpy.meta.s",
+				"settings": {
+					"fontStyle": "italic underline strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.b renpy.meta.u renpy.meta.s",
+				"settings": {
+					"fontStyle": "bold underline strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.i renpy.meta.b renpy.meta.u  renpy.meta.s",
+				"settings": {
+					"fontStyle": "italic bold underline strikethrough"
+				}
+			},
+			{
+				"scope": "renpy.meta.color.text",
+				"settings": {
+					"foreground": "#ffffff"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.acidic.gro",
+				"settings": {
+					"foreground": "#FF6B6B"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.basic.gro",
+				"settings": {
+					"foreground": "#4ECDC4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.polar.gro",
+				"settings": {
+					"foreground": "#45B7D1"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nonpolar.gro",
+				"settings": {
+					"foreground": "#96CEB4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.aromatic.gro",
+				"settings": {
+					"foreground": "#FFEAA7"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.special.gro",
+				"settings": {
+					"foreground": "#DDA0DD",
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nucleotide.gro",
+				"settings": {
+					"foreground": "#74B9FF"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.ion.gro",
+				"settings": {
+					"foreground": "#FD79A8",
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.water.gro",
+				"settings": {
+					"foreground": "#00CEC9"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.other.gro",
+				"settings": {
+					"foreground": "#B2BEC3"
+				}
+			},
+			{
+				"scope": "entity.name.function.atom.gro",
+				"settings": {
+					"foreground": "#A29BFE"
+				}
+			},
+			{
+				"scope": "constant.numeric.atom-index.gro",
+				"settings": {
+					"foreground": "#6C5CE7"
+				}
+			},
+			{
+				"scope": "constant.numeric.coordinate.gro",
+				"settings": {
+					"foreground": "#00B894"
+				}
+			},
+			{
+				"scope": "entity.name.tag.chain.gro",
+				"settings": {
+					"foreground": "#E17055",
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.acidic.pdb",
+				"settings": {
+					"foreground": "#FF6B6B"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.basic.pdb",
+				"settings": {
+					"foreground": "#4ECDC4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.polar.pdb",
+				"settings": {
+					"foreground": "#45B7D1"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nonpolar.pdb",
+				"settings": {
+					"foreground": "#96CEB4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.aromatic.pdb",
+				"settings": {
+					"foreground": "#FFEAA7"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.special.pdb",
+				"settings": {
+					"foreground": "#DDA0DD"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nucleotide.pdb",
+				"settings": {
+					"foreground": "#74B9FF"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.ion.pdb",
+				"settings": {
+					"foreground": "#FD79A8"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.water.pdb",
+				"settings": {
+					"foreground": "#00CEC9"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.other.pdb",
+				"settings": {
+					"foreground": "#B2BEC3"
+				}
+			},
+			{
+				"scope": "entity.name.function.atom.pdb",
+				"settings": {
+					"foreground": "#A29BFE"
+				}
+			},
+			{
+				"scope": "constant.numeric.atom-index.pdb",
+				"settings": {
+					"foreground": "#6C5CE7"
+				}
+			},
+			{
+				"scope": "constant.numeric.coordinate.pdb",
+				"settings": {
+					"foreground": "#00B894"
+				}
+			},
+			{
+				"scope": "entity.name.tag.chain.pdb",
+				"settings": {
+					"foreground": "#E17055"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.acidic.top",
+				"settings": {
+					"foreground": "#FF6B6B"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.basic.top",
+				"settings": {
+					"foreground": "#4ECDC4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.polar.top",
+				"settings": {
+					"foreground": "#45B7D1"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nonpolar.top",
+				"settings": {
+					"foreground": "#96CEB4"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.aromatic.top",
+				"settings": {
+					"foreground": "#FFEAA7"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.special.top",
+				"settings": {
+					"foreground": "#DDA0DD"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.nucleotide.top",
+				"settings": {
+					"foreground": "#74B9FF"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.ion.top",
+				"settings": {
+					"foreground": "#FD79A8"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.water.top",
+				"settings": {
+					"foreground": "#00CEC9"
+				}
+			},
+			{
+				"scope": "entity.name.type.residue.other.top",
+				"settings": {
+					"foreground": "#B2BEC3"
+				}
+			},
+			{
+				"scope": "keyword.control.run.mdp",
+				"settings": {
+					"foreground": "#E74C3C"
+				}
+			},
+			{
+				"scope": "keyword.control.output.mdp",
+				"settings": {
+					"foreground": "#3498DB"
+				}
+			},
+			{
+				"scope": "keyword.control.neighbor.mdp",
+				"settings": {
+					"foreground": "#2ECC71"
+				}
+			},
+			{
+				"scope": "keyword.control.electrostatics.mdp",
+				"settings": {
+					"foreground": "#F39C12"
+				}
+			},
+			{
+				"scope": "keyword.control.vdw.mdp",
+				"settings": {
+					"foreground": "#9B59B6"
+				}
+			},
+			{
+				"scope": "keyword.control.temperature.mdp",
+				"settings": {
+					"foreground": "#E67E22"
+				}
+			},
+			{
+				"scope": "keyword.control.pressure.mdp",
+				"settings": {
+					"foreground": "#1ABC9C"
+				}
+			},
+			{
+				"scope": "keyword.control.velocity.mdp",
+				"settings": {
+					"foreground": "#34495E"
+				}
+			},
+			{
+				"scope": "keyword.control.bonds.mdp",
+				"settings": {
+					"foreground": "#16A085"
+				}
+			},
+			{
+				"scope": "keyword.control.minimization.mdp",
+				"settings": {
+					"foreground": "#8E44AD"
+				}
+			},
+			{
+				"scope": "keyword.control.freeenergy.mdp",
+				"settings": {
+					"foreground": "#C0392B"
+				}
+			},
+			{
+				"scope": "keyword.control.nonbonded.mdp",
+				"settings": {
+					"foreground": "#D35400"
+				}
+			},
+			{
+				"scope": "keyword.control.ewald.mdp",
+				"settings": {
+					"foreground": "#27AE60"
+				}
+			},
+			{
+				"scope": "keyword.control.preprocessing.mdp",
+				"settings": {
+					"foreground": "#2980B9"
+				}
+			},
+			{
+				"scope": "keyword.control.other.mdp",
+				"settings": {
+					"foreground": "#7F8C8D"
+				}
+			},
+			{
+				"scope": "string.unquoted.value.mdp",
+				"settings": {
+					"foreground": "#A8D8B9"
+				}
+			},
+			{
+				"scope": "constant.numeric.atom-index.ndx",
+				"settings": {
+					"foreground": "#6C5CE7"
+				}
+			},
+			{
+				"scope": "comment.line.xvg",
+				"settings": {
+					"foreground": "#5CB85C"
+				}
+			},
+			{
+				"scope": "constant.numeric.xvg",
+				"settings": {
+					"foreground": "#00CEC9"
+				}
+			},
+			{
+				"scope": "keyword.control.xvg",
+				"settings": {
+					"foreground": "#FD79A8"
+				}
+			},
+			{
+				"scope": "keyword.control.packmol",
+				"settings": {
+					"foreground": "#E74C3C",
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": "entity.name.function.command.packmol",
+				"settings": {
+					"foreground": "#3498DB",
+					"fontStyle": "bold"
+				}
+			},
+			{
+				"scope": "entity.name.function.constraint.packmol",
+				"settings": {
+					"foreground": "#2ECC71"
+				}
+			},
+			{
+				"scope": "entity.name.function.geometry.packmol",
+				"settings": {
+					"foreground": "#F39C12"
+				}
+			},
+			{
+				"scope": "constant.numeric.packmol",
+				"settings": {
+					"foreground": "#9B59B6"
+				}
+			},
+			{
+				"scope": "string.quoted.double.filename.packmol",
+				"settings": {
+					"foreground": "#16A085"
+				}
+			},
+			{
+				"scope": "comment.line.hash.packmol",
+				"settings": {
+					"foreground": "#95A5A6"
+				}
+			},
+			{
+				"scope": "renpy.meta.color.#cfc",
+				"settings": {
+					"foreground": "#cfc"
+				}
+			},
+			{
+				"scope": "renpy.meta.color.#fff",
+				"settings": {
+					"foreground": "#fff"
+				}
+			}
+		]
+	}
+}
