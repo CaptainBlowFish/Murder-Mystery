@@ -5,7 +5,7 @@
 
 define mel = Character("Mel Atonin")
 define mike = Character("Mike Cull")
-# The game starts here.
+define pops = Character("Officer Ickle")
 
 label start:
 
@@ -52,13 +52,21 @@ label start:
     
     default looked_at_chalk_outline = False
     default looked_at_knife = False
-    defualt park_open = False
     
+    default park_open = False
+    default asked_what_you_saw = False
+    default asked_when_you_call_it_in = False
+    
+    default police_station_open = False
+
     call crime_scene(looked_at_chalk_outline, looked_at_knife)
-    # This ends the game.
+
+    call park(asked_what_you_saw, asked_when_you_call_it_in)
+
     return
 
 label crime_scene(looked_at_chalk_outline, looked_at_knife):
+    scene Crime Scene
     
     menu:
         "Look at Chalk Outline":
@@ -105,3 +113,46 @@ label crime_scene(looked_at_chalk_outline, looked_at_knife):
     else:
         call crime_scene(looked_at_chalk_outline, looked_at_knife)
     
+label park(asked_what_you_saw, asked_when_you_call_it_in):
+    scene park
+
+    show Mel Atonin Interested
+    mel "Would you happen to be Officer Ickle?"
+    mel "Would you mind answering some questions for me?"
+
+    show Pops Ickle Neutral
+    pops "Sure thang, but you can just call me 'Pops.'"
+
+    show Mel Atonin
+    mel "Alright then, Pops."
+
+    menu:
+        "What did you see?":
+            $ asked_what_you_saw = True
+            show Pops Ickle Neutral
+            pops "Well, Mike here asked me to patrol the area 'tween the park and station 'round 4:00am. Said he had a lead on some kinda case 'round 'ere or sumthin'."
+            pops "When l got near the park, I saw that Jen lady standing over a woman's corpse in an alley."
+            pops "I called out to 'er. She seemed pretty shaken, but when she saw me, she turned n' ran 'ere."
+            pops "I caught 'er - arrested 'er on the spot, too. Can't be too sure she didn't get rid of nuttin' 'fore I caught 'er, though."
+        "When did you call it in?":
+            $ asked_when_you_call_it_in = True
+            show Pops Ickle Neutral
+            pops "I called it in as soon as I saw that Jen lady runnin'."
+            pops "It was pretty early, prolly 'round 5 in tha mornin'."
+    
+    if asked_what_you_saw and asked_when_you_call_it_in:
+        show Mel Atonin Neutral
+        mel "(I feel like I should note this testimony for later)"
+        narrator "Pops' Testimony was added to the Evidence Folder."
+        mel "Well, there's not too much to build off of, but let's head back to the station and see what we can piece together based on what we have so far."
+        
+        if not police_station_open:
+            $ police_station_open = True
+            narrator "New location 'POLICE STATION' unlocked"
+
+        return
+    else:
+        call park(asked_what_you_saw, asked_when_you_call_it_in) 
+
+label police_station():
+    return
