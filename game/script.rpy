@@ -57,16 +57,23 @@ label start:
     default asked_what_you_saw = False
     default asked_when_you_call_it_in = False
     
+    default pops_introduced = False
+
     default police_station_open = False
+
+    default evidence_chosen = "None"
+    define first_contradiction = False
 
     call crime_scene(looked_at_chalk_outline, looked_at_knife)
 
     call park(asked_what_you_saw, asked_when_you_call_it_in)
 
+    call police_station()
+
     return
 
-label crime_scene(looked_at_chalk_outline, looked_at_knife):
-    scene Crime Scene
+label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
+    scene Alley
     
     menu:
         "Look at Chalk Outline":
@@ -108,23 +115,25 @@ label crime_scene(looked_at_chalk_outline, looked_at_knife):
         if not park_open:
             $ park_open = True
             narrator "New location 'PARK' unlocked"
-        
-        return
     else:
         call crime_scene(looked_at_chalk_outline, looked_at_knife)
     
-label park(asked_what_you_saw, asked_when_you_call_it_in):
+    return
+
+label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
     scene park
 
-    show Mel Atonin Interested
-    mel "Would you happen to be Officer Ickle?"
-    mel "Would you mind answering some questions for me?"
+    if not pops_introduced:
+        $ pops_introduced = True   
+        show Mel Atonin Interested
+        mel "Would you happen to be Officer Ickle?"
+        mel "Would you mind answering some questions for me?"
 
-    show Pops Ickle Neutral
-    pops "Sure thang, but you can just call me 'Pops.'"
+        show Pops Ickle Neutral
+        pops "Sure thang, but you can just call me 'Pops.'"
 
-    show Mel Atonin
-    mel "Alright then, Pops."
+        show Mel Atonin
+        mel "Alright then, Pops."
 
     menu:
         "What did you see?":
@@ -134,12 +143,14 @@ label park(asked_what_you_saw, asked_when_you_call_it_in):
             pops "When l got near the park, I saw that Jen lady standing over a woman's corpse in an alley."
             pops "I called out to 'er. She seemed pretty shaken, but when she saw me, she turned n' ran 'ere."
             pops "I caught 'er - arrested 'er on the spot, too. Can't be too sure she didn't get rid of nuttin' 'fore I caught 'er, though."
+        
         "When did you call it in?":
             $ asked_when_you_call_it_in = True
             show Pops Ickle Neutral
             pops "I called it in as soon as I saw that Jen lady runnin'."
             pops "It was pretty early, prolly 'round 5 in tha mornin'."
     
+
     if asked_what_you_saw and asked_when_you_call_it_in:
         show Mel Atonin Neutral
         mel "(I feel like I should note this testimony for later)"
@@ -149,10 +160,60 @@ label park(asked_what_you_saw, asked_when_you_call_it_in):
         if not police_station_open:
             $ police_station_open = True
             narrator "New location 'POLICE STATION' unlocked"
-
-        return
     else:
         call park(asked_what_you_saw, asked_when_you_call_it_in) 
 
-label police_station():
     return
+
+label police_station():
+    scene Police Station
+    mel "Let's see what I can piece together on the corkboard. Something about this doesn't feel right, but I'm not quite sure what for now."
+    $ first_contradiction = False
+
+    label .loop:
+        call evidence_folder(evidence_chosen)
+        if not (evidence_chosen == "Autopsy report" or evidence_chosen == "Pops' Testimony"):
+            mel "It doesen't seem like anything's off about this piece of evidence for now."
+            jump .loop
+
+
+    
+    mel "Yeah, something is pretty off about this."
+    mel "It's right in front of me..."
+
+    return
+
+label evidence_folder(evidence_chosen="None"):
+    scene Evidence Folder
+
+    menu:
+        "Autopsy report":
+            show Autopsy Report
+            narrator "Autopsy Report"
+            narrator "Name: Tessa Tarone"
+            narrator "Cause of Death: Single stab wound to the back of ribs."
+            narrator "Location of Death: Alley a block from the Park."
+            narrator "Time of Death: Februrary 19, 20XX, ~3:00am."
+
+            $ evidence_chosen = "Autopsy report"
+        
+        "Dying Message":
+            show Dying Message
+            narrator "The suspect's name is written in the victim's blood. The victim's blood was also found on her right index finger."
+
+            $ evidence_chosen = "Dying Message"
+
+        "Knife":
+            show Knife
+            narrator "The knige useed to kill the victim. The same knie was used in an armed robbery a few years prior."
+            narrator "... Shouldn't this still be in evidence?"
+
+            $ evidence_chosen = "Knife"
+
+        "Pops' Testimony":
+            show Testimony
+            narrator "The suspect was seen at the scene of the crime around 5:00am before dleeing to the park. Was asked to patrol the area by Detective Cull at around 4:00am."
+
+            $ evidence_chosen = "Pops' Testimony"
+
+    return 
