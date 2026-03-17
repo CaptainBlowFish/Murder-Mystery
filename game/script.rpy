@@ -50,19 +50,22 @@ label start:
     show Mel Atonin Determined
     mel "Alright, let's get to investigating."
     
-    default looked_at_chalk_outline = False
-    default looked_at_knife = False
+    $ looked_at_chalk_outline = False
+    $ looked_at_knife = False
     
-    default park_open = False
-    default asked_what_you_saw = False
-    default asked_when_you_call_it_in = False
+    $ park_open = False
+    $ asked_what_you_saw = False
+    $ asked_when_you_call_it_in = False
     
-    default pops_introduced = False
+    $ pops_introduced = False
 
-    default police_station_open = False
+    $ police_station_open = False
 
-    default evidence_chosen = "None"
-    define first_contradiction = False
+    $ choosed_autopsy_report = False
+    $ choosed_dying_message = False
+    $ choosed_kife = False
+    $ choosed_pops_testimony = False
+    $ first_contradiction = False
 
     call crime_scene(looked_at_chalk_outline, looked_at_knife)
 
@@ -171,20 +174,28 @@ label police_station():
     $ first_contradiction = False
 
     label .loop:
-        call evidence_folder(evidence_chosen)
-        if not (evidence_chosen == "Autopsy report" or evidence_chosen == "Pops' Testimony"):
+        call evidence_folder()
+        if choosed_autopsy_report or choosed_pops_testimony:
+            mel "Yeah, something is pretty off about this."
+            mel "It's right in front of me..."
+        else:
             mel "It doesen't seem like anything's off about this piece of evidence for now."
             jump .loop
 
+    call discrepency()
 
-    
-    mel "Yeah, something is pretty off about this."
-    mel "It's right in front of me..."
+    call discrepency2()
 
     return
 
-label evidence_folder(evidence_chosen="None"):
+label evidence_folder():
     scene Evidence Folder
+
+    # I'm going to KILL myself if this doesn't work...
+    $ choosed_autopsy_report = False
+    $ choosed_dying_message = False
+    $ choosed_kife = False
+    $ choosed_pops_testimony = False
 
     menu:
         "Autopsy report":
@@ -195,25 +206,133 @@ label evidence_folder(evidence_chosen="None"):
             narrator "Location of Death: Alley a block from the Park."
             narrator "Time of Death: Februrary 19, 20XX, ~3:00am."
 
-            $ evidence_chosen = "Autopsy report"
+            $ choosed_autopsy_report = True
         
         "Dying Message":
             show Dying Message
             narrator "The suspect's name is written in the victim's blood. The victim's blood was also found on her right index finger."
 
-            $ evidence_chosen = "Dying Message"
+            $ choosed_dying_message = True
 
         "Knife":
             show Knife
-            narrator "The knige useed to kill the victim. The same knie was used in an armed robbery a few years prior."
+            narrator "The knife useed to kill the victim. The same knie was used in an armed robbery a few years prior."
             narrator "... Shouldn't this still be in evidence?"
 
-            $ evidence_chosen = "Knife"
+            $ choosed_kife = True
 
         "Pops' Testimony":
             show Testimony
-            narrator "The suspect was seen at the scene of the crime around 5:00am before dleeing to the park. Was asked to patrol the area by Detective Cull at around 4:00am."
+            narrator "The suspect was seen at the scene of the crime around 5:00am before leaving to the park. Was asked to patrol the area by Detective Cull at around 4:00am."
 
-            $ evidence_chosen = "Pops' Testimony"
+            $ choosed_pops_testimony = True
 
     return 
+
+label discrepency():
+    label .loop:
+        menu:
+            "Time of Death":
+                mel "According to the autopsy report, Tessa was killed at around 3:00am."
+                mel "According to Officer Ickle's Testimony, Jen was at the scene at 5:00am."
+                mel "What was Jen doing for that time? And does that call into question another piece of evidence?"
+            "Cause of Death":
+                mel "The cause of death seems right."
+                jump .loop
+            "Location of Death":
+                mel "The Location seems right."
+                jump .loop
+
+
+    return
+
+label discrepency2():
+    label .loop:
+        call evidence_folder()
+        if choosed_autopsy_report:
+            show Mel Atonin Neutral
+            mel "I already know that is wrong"
+            jump .loop
+        elif choosed_dying_message:
+            show Mel Atonin Confused
+            mel "Wouldn't Jen have noticed either Tessa writing the dying message or the message itself?"
+            mel "She apparently had 2 hours with the body. She could have hidden everything better."
+
+            show Mike Cull Relaxed
+            mike "Maybe it was panic? A dissociative or psychotic episode? Dosen't matter to me. All that matters is that the suspect still being there led to her being caught."
+
+            show Mel Atonin Confused
+            mel "No..."
+            show Mel Atonin Worried 
+            mel "That is what led to her being caught"
+            jump .loop
+        elif choosed_pops_testimony:
+            show Mel Atonin Determined
+            mel "You asked Officer Ickle to patrol the area of the murder!"
+            mel "Tell me, Detective Cull, what was this case that was so important that an officer had to be deployed from the station to patrol?"
+
+            show Mike Cull Excited
+            mike "Let me be frank, Detective Jake Atonin- that's non eof your business."
+
+            show Mel Atonin Sad
+            mel "You..!"
+
+            show Mike Cull Excited
+            mike "This isn't even your case. You're just a consultant."
+            mike "If you wish to do nothing but point out the obvious and spout nonsense, I'll have you removed."
+            mike "Now, be a good boy and finish what I brought you here for:"
+            mike "Deduce why an armed robber would kill their partner years after committing the crime."
+
+            show Mel Atonin Worried
+            mel "(What the hell is wrong with this guy..? Wait, that's it! The armed robbery!)"
+            mel "I finally get it. That's how the robbery ties to this case."
+
+            show Mike Cull Worried
+            mike "Have you gone mental, now?"
+
+            show Mel Atonin Excited
+            mel "This is how the robbery connects to the murder!"
+            return
+
+            
+    return
+
+label discrepency3():
+    label .loop:
+        call evidence_folder()
+        if choosed_kife:
+            show Mel Atonin Neutral
+            mel "The knife from the robbery is the same as the one used in this murder!"
+
+            show Mike Cull Worried
+            mike "Again, if you’re just going to point out the obvious, you can just leave."
+
+            show Mel Atonin Neutral
+            mel "You don’t get it, do you? That knife was still stored in evidence up until the murder. You’d need our clearance or higher to so much as look at it!"
+
+            show Mike Cull Worried
+            mike "Now just hold on, what do you think you're implying here?"
+
+show Mel Atonin Neutral
+mel "The one who instructed Officer Ickle to patrol the scene of the murder, along with the one that took the knife from evidence…"
+It was you, wasn’t it?! You’re the one that killed Tessa Tarone!
+
+Mike: You think you’re so clever, huh? Don’t forget, evidence is king, and you don’t seem to have anything more than circumstantial!
+
+Mel: You’d think that, wouldn’t you?
+
+Mike: The logs…
+
+
+Narrator: Mike, in a panic, runs out of the room…
+
+[Play clothesline noises]
+
+Pops: I heard everything. I was able to find sumthin’ pretty incriminating while I was at it, too. Detective Cull, yer under arrest for murder.
+
+            return
+        else:
+            jump .loop
+
+    
+    return
