@@ -186,6 +186,8 @@ label police_station():
 
     call discrepency2()
 
+    call discrepency3()
+
     return
 
 label evidence_folder():
