@@ -313,23 +313,26 @@ label discrepency3():
             show Mike Cull Worried
             mike "Now just hold on, what do you think you're implying here?"
 
-show Mel Atonin Neutral
-mel "The one who instructed Officer Ickle to patrol the scene of the murder, along with the one that took the knife from evidence…"
-It was you, wasn’t it?! You’re the one that killed Tessa Tarone!
+            show Mel Atonin Neutral
+            mel "The one who instructed Officer Ickle to patrol the scene of the murder, along with the one that took the knife from evidence…"
+            mel "It was you, wasn’t it?! You’re the one that killed Tessa Tarone!"
 
-Mike: You think you’re so clever, huh? Don’t forget, evidence is king, and you don’t seem to have anything more than circumstantial!
+            show Mike Cull Excited
+            mike "You think you’re so clever, huh? Don’t forget, evidence is king, and you don’t seem to have anything more than circumstantial!"
 
-Mel: You’d think that, wouldn’t you?
+            show Mel Atonin Determined
+            mel "You’d think that, wouldn’t you?"
 
-Mike: The logs…
+            show Mike Cull Neutral
+            mike "The logs…"
 
 
-Narrator: Mike, in a panic, runs out of the room…
+            narrator "Mike, in a panic, runs out of the room…"
 
-[Play clothesline noises]
+            narrator "(Play clothesline noises)"
 
-Pops: I heard everything. I was able to find sumthin’ pretty incriminating while I was at it, too. Detective Cull, yer under arrest for murder.
-
+            show Pops Angry
+            pops "I heard everything. I was able to find sumthin’ pretty incriminating while I was at it, too. Detective Cull, yer under arrest for murder."
             return
         else:
             jump .loop
