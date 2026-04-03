@@ -11,29 +11,29 @@ label start:
 
     scene bg room
 
-    show Mel Atonin
+    show mel_atonin
     mel "My name is Mel. I work as a detective in Old Bay City."
     mel "While not as big as it used to be, crime still runs rampant here."
     mel "It's my job as a detective to try to bring some semblance of peace to the people of this town, even if they don't seem to respect me as a person…"
     mel "This new case that I've gotten, though…"
-    show Mel Atonin Worried
+    show mel_atonin_worried
     mel "I have a bad feeling about it."
 
-    scene Spooky Deadman Alley
+    scene spooky_deadman_alley
 
     narrator "Februrary 19, 20XX, 2:27pm."
     
-    show Mike Cull Excited
+    show mike_cull_excited
     mike "Hey, Mel! Er, sorry, Detective Atonin."
 
     narrator "This is Mike Cull, an old friend of Mel's from high school and a fellow detective on the force."
 
-    show Mel Atonin Relaxed
+    show mel_atonin_relaxed
     mel "No worries, Detective Cull."
-    show Mel Altonin Interested
+    show mel_altonin_interested
     mel "Can you give me an overview of what happened here?"
 
-    show Mike Cull 
+    show mike_cull 
     mike "Sure! The victim is Tessa Tarone, age 29, previously arrested and convicted on charges of armed robbery alongside her partner."
     mike "The victim died just this morning."
     mike "The cause of death was a single stab wound to the back."
@@ -41,13 +41,13 @@ label start:
 
     narrator "Autopsy Report was added to the Evidence Folder."
 
-    show Mel Atonin Confused
+    show mel_atonin_confused
     mel "It seems pretty cut-and-dry from what you're saying. Why'd you ask to bring me on, then?"
 
-    show Mike Cull Worried
+    show mike_cull_worried
     mike "Well, I'm struggling to put together a motive for the suspect, and was hoping you could help establish one."
 
-    show Mel Atonin Determined
+    show mel_atonin_determined
     mel "Alright, let's get to investigating."
     
     $ looked_at_chalk_outline = False
@@ -76,18 +76,18 @@ label start:
     return
 
 label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
-    scene Alley
+    scene spooky_deadman_alley
     
     menu:
         "Look at Chalk Outline":
             $ looked_at_chalk_outline = True
-            show Mel Atonin 
+            show mel_atonin 
             mel "So this is where Tessa died-"
             mel "Hm? There seems to be something written here."
-            show Jen Estra Name Blood
+            show jen_estra_name_blood
             mel "Jen's name is written in blood here."
 
-            show Mike Cull 
+            show mike_cull 
             mike "The blood is the victim's, and there was blood found on the victim's right index finger."
             mike "This is undeniably the victim's dying message."
 
@@ -95,21 +95,21 @@ label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
 
         "Look at Knife":
             $ looked_at_knife = True
-            show Mel Atonin 
+            show mel_atonin 
             mel "Is this the murder weapon?"
 
-            show Mike Cull 
+            show mike_cull 
             mike "Yep. The blade matches the wound, and the handle has the suspect's fingerprints- no one else's."
 
             narrator "Knife was added to the Evidence Folder"
 
 
     if looked_at_chalk_outline and looked_at_knife:
-        show Mel Atonin 
+        show mel_atonin 
         mel "There doesn't seem to be much here, but it all seems pretty concrete."
         mel "Were there any witnesses?"
         
-        show Mike Cull 
+        show mike_cull 
         mike "Actually, yeah. The one who called it in was Pops ... Officer Ickle."
         mike "He saw the suspect leaving the scene with the body behind her."
         mike "He chased the suspect to the park, where he then arrested her."
@@ -128,20 +128,20 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
 
     if not pops_introduced:
         $ pops_introduced = True   
-        show Mel Atonin Interested
+        show mel_atonin_interested
         mel "Would you happen to be Officer Ickle?"
         mel "Would you mind answering some questions for me?"
 
-        show Pops Ickle 
+        show pops_ickle 
         pops "Sure thang, but you can just call me 'Pops.'"
 
-        show Mel Atonin
+        show mel_atonin
         mel "Alright then, Pops."
 
     menu:
         "What did you see?":
             $ asked_what_you_saw = True
-            show Pops Ickle 
+            show pops_ickle 
             pops "Well, Mike here asked me to patrol the area 'tween the park and station 'round 4:00am. Said he had a lead on some kinda case 'round 'ere or sumthin'."
             pops "When l got near the park, I saw that Jen lady standing over a woman's corpse in an alley."
             pops "I called out to 'er. She seemed pretty shaken, but when she saw me, she turned n' ran 'ere."
@@ -149,13 +149,13 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
         
         "When did you call it in?":
             $ asked_when_you_call_it_in = True
-            show Pops Ickle 
+            show pops_ickle 
             pops "I called it in as soon as I saw that Jen lady runnin'."
             pops "It was pretty early, prolly 'round 5 in tha mornin'."
     
 
     if asked_what_you_saw and asked_when_you_call_it_in:
-        show Mel Atonin 
+        show mel_atonin 
         mel "(I feel like I should note this testimony for later)"
         narrator "Pops' Testimony was added to the Evidence Folder."
         mel "Well, there's not too much to build off of, but let's head back to the station and see what we can piece together based on what we have so far."
@@ -169,7 +169,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
     return
 
 label police_station():
-    scene Police Station
+    scene police_station
     mel "Let's see what I can piece together on the corkboard. Something about this doesn't feel right, but I'm not quite sure what for now."
     $ first_contradiction = False
 
@@ -191,7 +191,7 @@ label police_station():
     return
 
 label evidence_folder():
-    scene Evidence Folder
+    scene evidence_folder
 
     # I'm going to KILL myself if this doesn't work...
     $ choosed_autopsy_report = False
@@ -201,7 +201,7 @@ label evidence_folder():
 
     menu:
         "Autopsy report":
-            show Autopsy Report
+            show autopsy_report
             narrator "Autopsy Report"
             narrator "Name: Tessa Tarone"
             narrator "Cause of Death: Single stab wound to the back of ribs."
@@ -211,20 +211,20 @@ label evidence_folder():
             $ choosed_autopsy_report = True
         
         "Dying Message":
-            show Dying Message
+            show dying_message
             narrator "The suspect's name is written in the victim's blood. The victim's blood was also found on her right index finger."
 
             $ choosed_dying_message = True
 
         "Knife":
-            show Knife
+            show knife
             narrator "The knife useed to kill the victim. The same knie was used in an armed robbery a few years prior."
             narrator "... Shouldn't this still be in evidence?"
 
             $ choosed_kife = True
 
         "Pops' Testimony":
-            show Testimony
+            show testimony
             narrator "The suspect was seen at the scene of the crime around 5:00am before leaving to the park. Was asked to patrol the area by Detective Cull at around 4:00am."
 
             $ choosed_pops_testimony = True
@@ -252,47 +252,47 @@ label discrepency2():
     label .loop:
         call evidence_folder()
         if choosed_autopsy_report:
-            show Mel Atonin 
+            show mel_atonin 
             mel "I already know that is wrong"
             jump .loop
         elif choosed_dying_message:
-            show Mel Atonin Confused
+            show mel_atonin_confused
             mel "Wouldn't Jen have noticed either Tessa writing the dying message or the message itself?"
             mel "She apparently had 2 hours with the body. She could have hidden everything better."
 
-            show Mike Cull Relaxed
+            show mike_cull_relaxed
             mike "Maybe it was panic? A dissociative or psychotic episode? Dosen't matter to me. All that matters is that the suspect still being there led to her being caught."
 
-            show Mel Atonin Confused
+            show mel_atonin_confused
             mel "No..."
-            show Mel Atonin Worried 
+            show mel_atonin_worried 
             mel "That is what led to her being caught"
             jump .loop
         elif choosed_pops_testimony:
-            show Mel Atonin Determined
+            show mel_atonin_determined
             mel "You asked Officer Ickle to patrol the area of the murder!"
             mel "Tell me, Detective Cull, what was this case that was so important that an officer had to be deployed from the station to patrol?"
 
-            show Mike Cull Excited
+            show mike_cull_excited
             mike "Let me be frank, Detective Jake Atonin- that's non eof your business."
 
-            show Mel Atonin Sad
+            show mel_atonin_sad
             mel "You..!"
 
-            show Mike Cull Excited
+            show mike_cull_excited
             mike "This isn't even your case. You're just a consultant."
             mike "If you wish to do nothing but point out the obvious and spout nonsense, I'll have you removed."
             mike "Now, be a good boy and finish what I brought you here for:"
             mike "Deduce why an armed robber would kill their partner years after committing the crime."
 
-            show Mel Atonin Worried
+            show mel_atonin_worried
             mel "(What the hell is wrong with this guy..? Wait, that's it! The armed robbery!)"
             mel "I finally get it. That's how the robbery ties to this case."
 
-            show Mike Cull Worried
+            show mike_cull_worried
             mike "Have you gone mental, now?"
 
-            show Mel Atonin Excited
+            show mel_atonin_excited
             mel "This is how the robbery connects to the murder!"
             return
 
@@ -303,29 +303,29 @@ label discrepency3():
     label .loop:
         call evidence_folder()
         if choosed_kife:
-            show Mel Atonin 
+            show mel_atonin 
             mel "The knife from the robbery is the same as the one used in this murder!"
 
-            show Mike Cull Worried
+            show mike_cull_worried
             mike "Again, if you’re just going to point out the obvious, you can just leave."
 
-            show Mel Atonin 
+            show mel_atonin 
             mel "You don’t get it, do you? That knife was still stored in evidence up until the murder. You’d need our clearance or higher to so much as look at it!"
 
-            show Mike Cull Worried
+            show mike_cull_worried
             mike "Now just hold on, what do you think you're implying here?"
 
-            show Mel Atonin 
+            show mel_atonin 
             mel "The one who instructed Officer Ickle to patrol the scene of the murder, along with the one that took the knife from evidence…"
             mel "It was you, wasn’t it?! You’re the one that killed Tessa Tarone!"
 
-            show Mike Cull Excited
+            show mike_cull_excited
             mike "You think you’re so clever, huh? Don’t forget, evidence is king, and you don’t seem to have anything more than circumstantial!"
 
-            show Mel Atonin Determined
+            show mel_atonin_determined
             mel "You’d think that, wouldn’t you?"
 
-            show Mike Cull 
+            show mike_cull 
             mike "The logs…"
 
 
@@ -333,7 +333,7 @@ label discrepency3():
 
             narrator "(Play clothesline noises)"
 
-            show Pops Angry
+            show pops_angry
             pops "I heard everything. I was able to find sumthin’ pretty incriminating while I was at it, too. Detective Cull, yer under arrest for murder."
             return
         else:
