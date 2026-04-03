@@ -11,7 +11,7 @@ label start:
 
     scene bg room
 
-    show Mel Atonin Neutral
+    show Mel Atonin
     mel "My name is Mel. I work as a detective in Old Bay City."
     mel "While not as big as it used to be, crime still runs rampant here."
     mel "It's my job as a detective to try to bring some semblance of peace to the people of this town, even if they don't seem to respect me as a person…"
@@ -19,7 +19,7 @@ label start:
     show Mel Atonin Worried
     mel "I have a bad feeling about it."
 
-    scene Alley
+    scene Spooky Deadman Alley
 
     narrator "Februrary 19, 20XX, 2:27pm."
     
@@ -33,7 +33,7 @@ label start:
     show Mel Altonin Interested
     mel "Can you give me an overview of what happened here?"
 
-    show Mike Cull Neutral
+    show Mike Cull 
     mike "Sure! The victim is Tessa Tarone, age 29, previously arrested and convicted on charges of armed robbery alongside her partner."
     mike "The victim died just this morning."
     mike "The cause of death was a single stab wound to the back."
@@ -81,13 +81,13 @@ label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
     menu:
         "Look at Chalk Outline":
             $ looked_at_chalk_outline = True
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "So this is where Tessa died-"
             mel "Hm? There seems to be something written here."
             show Jen Estra Name Blood
             mel "Jen's name is written in blood here."
 
-            show Mike Cull Neutral
+            show Mike Cull 
             mike "The blood is the victim's, and there was blood found on the victim's right index finger."
             mike "This is undeniably the victim's dying message."
 
@@ -95,21 +95,21 @@ label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
 
         "Look at Knife":
             $ looked_at_knife = True
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "Is this the murder weapon?"
 
-            show Mike Cull Neutral
+            show Mike Cull 
             mike "Yep. The blade matches the wound, and the handle has the suspect's fingerprints- no one else's."
 
             narrator "Knife was added to the Evidence Folder"
 
 
     if looked_at_chalk_outline and looked_at_knife:
-        show Mel Atonin Neutral
+        show Mel Atonin 
         mel "There doesn't seem to be much here, but it all seems pretty concrete."
         mel "Were there any witnesses?"
         
-        show Mike Cull Neutral
+        show Mike Cull 
         mike "Actually, yeah. The one who called it in was Pops ... Officer Ickle."
         mike "He saw the suspect leaving the scene with the body behind her."
         mike "He chased the suspect to the park, where he then arrested her."
@@ -132,7 +132,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
         mel "Would you happen to be Officer Ickle?"
         mel "Would you mind answering some questions for me?"
 
-        show Pops Ickle Neutral
+        show Pops Ickle 
         pops "Sure thang, but you can just call me 'Pops.'"
 
         show Mel Atonin
@@ -141,7 +141,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
     menu:
         "What did you see?":
             $ asked_what_you_saw = True
-            show Pops Ickle Neutral
+            show Pops Ickle 
             pops "Well, Mike here asked me to patrol the area 'tween the park and station 'round 4:00am. Said he had a lead on some kinda case 'round 'ere or sumthin'."
             pops "When l got near the park, I saw that Jen lady standing over a woman's corpse in an alley."
             pops "I called out to 'er. She seemed pretty shaken, but when she saw me, she turned n' ran 'ere."
@@ -149,13 +149,13 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
         
         "When did you call it in?":
             $ asked_when_you_call_it_in = True
-            show Pops Ickle Neutral
+            show Pops Ickle 
             pops "I called it in as soon as I saw that Jen lady runnin'."
             pops "It was pretty early, prolly 'round 5 in tha mornin'."
     
 
     if asked_what_you_saw and asked_when_you_call_it_in:
-        show Mel Atonin Neutral
+        show Mel Atonin 
         mel "(I feel like I should note this testimony for later)"
         narrator "Pops' Testimony was added to the Evidence Folder."
         mel "Well, there's not too much to build off of, but let's head back to the station and see what we can piece together based on what we have so far."
@@ -252,7 +252,7 @@ label discrepency2():
     label .loop:
         call evidence_folder()
         if choosed_autopsy_report:
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "I already know that is wrong"
             jump .loop
         elif choosed_dying_message:
@@ -303,19 +303,19 @@ label discrepency3():
     label .loop:
         call evidence_folder()
         if choosed_kife:
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "The knife from the robbery is the same as the one used in this murder!"
 
             show Mike Cull Worried
             mike "Again, if you’re just going to point out the obvious, you can just leave."
 
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "You don’t get it, do you? That knife was still stored in evidence up until the murder. You’d need our clearance or higher to so much as look at it!"
 
             show Mike Cull Worried
             mike "Now just hold on, what do you think you're implying here?"
 
-            show Mel Atonin Neutral
+            show Mel Atonin 
             mel "The one who instructed Officer Ickle to patrol the scene of the murder, along with the one that took the knife from evidence…"
             mel "It was you, wasn’t it?! You’re the one that killed Tessa Tarone!"
 
@@ -325,7 +325,7 @@ label discrepency3():
             show Mel Atonin Determined
             mel "You’d think that, wouldn’t you?"
 
-            show Mike Cull Neutral
+            show Mike Cull 
             mike "The logs…"
 
 
