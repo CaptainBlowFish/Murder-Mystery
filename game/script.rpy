@@ -9,7 +9,7 @@ define pops = Character("Officer Ickle")
 
 label start:
 
-    scene bg room
+    scene black
 
     show mel_atonin
     mel "My name is Mel. I work as a detective in Old Bay City."
@@ -30,7 +30,7 @@ label start:
 
     show mel_atonin_relaxed
     mel "No worries, Detective Cull."
-    show mel_altonin_interested
+    show mel_atonin_interested
     mel "Can you give me an overview of what happened here?"
 
     show mike_cull 
@@ -84,7 +84,7 @@ label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
             show mel_atonin 
             mel "So this is where Tessa died-"
             mel "Hm? There seems to be something written here."
-            show jen_estra_name_blood
+            show words_in_blood
             mel "Jen's name is written in blood here."
 
             show mike_cull 
@@ -124,7 +124,7 @@ label crime_scene(looked_at_chalk_outline=False, looked_at_knife=False):
     return
 
 label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
-    scene park
+    scene daytime_park
 
     if not pops_introduced:
         $ pops_introduced = True   
@@ -132,7 +132,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
         mel "Would you happen to be Officer Ickle?"
         mel "Would you mind answering some questions for me?"
 
-        show pops_ickle 
+        show pops 
         pops "Sure thang, but you can just call me 'Pops.'"
 
         show mel_atonin
@@ -141,7 +141,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
     menu:
         "What did you see?":
             $ asked_what_you_saw = True
-            show pops_ickle 
+            show pops 
             pops "Well, Mike here asked me to patrol the area 'tween the park and station 'round 4:00am. Said he had a lead on some kinda case 'round 'ere or sumthin'."
             pops "When l got near the park, I saw that Jen lady standing over a woman's corpse in an alley."
             pops "I called out to 'er. She seemed pretty shaken, but when she saw me, she turned n' ran 'ere."
@@ -149,7 +149,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
         
         "When did you call it in?":
             $ asked_when_you_call_it_in = True
-            show pops_ickle 
+            show pops 
             pops "I called it in as soon as I saw that Jen lady runnin'."
             pops "It was pretty early, prolly 'round 5 in tha mornin'."
     
@@ -169,7 +169,7 @@ label park(asked_what_you_saw=False, asked_when_you_call_it_in=False):
     return
 
 label police_station():
-    scene police_station
+    scene police_interior
     mel "Let's see what I can piece together on the corkboard. Something about this doesn't feel right, but I'm not quite sure what for now."
     $ first_contradiction = False
 
@@ -211,13 +211,13 @@ label evidence_folder():
             $ choosed_autopsy_report = True
         
         "Dying Message":
-            show dying_message
+            show words_in_blood
             narrator "The suspect's name is written in the victim's blood. The victim's blood was also found on her right index finger."
 
             $ choosed_dying_message = True
 
         "Knife":
-            show knife
+            show murder_knife
             narrator "The knife useed to kill the victim. The same knie was used in an armed robbery a few years prior."
             narrator "... Shouldn't this still be in evidence?"
 
@@ -276,7 +276,7 @@ label discrepency2():
             show mike_cull_excited
             mike "Let me be frank, Detective Jake Atonin- that's non eof your business."
 
-            show mel_atonin_sad
+            show mel_atonin_worried
             mel "You..!"
 
             show mike_cull_excited
